@@ -10,14 +10,14 @@ def get_priority(c):
 
 total_priority = 0
 for line in lines[:-1]:
-    same = set(line[:len(line)//2]).intersection(set(line[len(line)//2:]))
+    same = set(line[:len(line)//2]) & (set(line[len(line)//2:]))
     total_priority += get_priority(same.pop())
 
 print("Part 1:", total_priority)
 total_priority = 0
 
 for a, b, c in zip(lines[::3], lines[1::3], lines[2::3]):
-    same = set(a).intersection(b).intersection(c)
+    same = set(a) & set(b) & set(c)
     if not same: continue
     total_priority += get_priority(same.pop())
 
