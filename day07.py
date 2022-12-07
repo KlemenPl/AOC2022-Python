@@ -39,13 +39,8 @@ def get_foler_size(curr_path):
 
 
 get_foler_size("")
-print(folder_files)
 # Part 1
-sum_size = 0
-for size in folder_sizes.values():
-    if size < 100000:
-        sum_size += size
-
+sum_size = sum([x for x in folder_sizes.values() if x < 100000])
 print("Part 1:", sum_size)
 
 # Part 2
