@@ -82,15 +82,14 @@ print("Part 1:", num_inspected_s[-1] * num_inspected_s[-2])
 monkeys = parse_input()
 num_inspected = [0] * len(monkeys)
 
-# Find LCM
-all_divisors = []
+# Find common divisible
+divisible = 1
 for monkey in monkeys:
-    all_divisors.append(monkey.test_div)
+    divisible *= monkey.test_div
 
-divisor = math.lcm(*all_divisors)
-print("Divisor:", divisor)
+print("Divisor:", divisible)
 for i in range(10000):
-    simulate_round(monkeys, 0, divisor)
+    simulate_round(monkeys, 0, divisible)
 
 num_inspected_s = sorted(num_inspected)
 print("Part 2:", num_inspected_s[-1] * num_inspected_s[-2])
