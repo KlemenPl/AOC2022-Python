@@ -1,5 +1,4 @@
 from shared import get_input
-from heapq import *
 
 lines = get_input(12)[:-1]
 
@@ -36,12 +35,11 @@ moves = [
     (0, -1),  # Down
 ]
 
-heap = []
-heappush(heap, (0, 0, start))
+q = [(0, start)]
 visited = set()
 
-while heap:
-    cost, path_count, node = heappop(heap)
+while q:
+    path_count, node = q.pop(0)
 
     if node == end:
         print("Part 1:", path_count)
@@ -57,14 +55,12 @@ while heap:
             continue
         visited.add(new_node)
 
-        cost += 1
-        heappush(heap, (cost, path_count + 1, new_node))
+        q.append((path_count + 1, new_node))
 
-q = []
+q = [(0, end)]
 visited = set()
-q.append((0, end))
 
-while heap:
+while q:
     path_count, node = q.pop(0)
 
     if get_elevation(node) <= ord('a'):
