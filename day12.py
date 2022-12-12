@@ -60,12 +60,12 @@ while heap:
         cost += 1
         heappush(heap, (cost, path_count + 1, new_node))
 
-heap = []
+q = []
 visited = set()
-heappush(heap, (0, 0, end))
+q.append((0, end))
 
 while heap:
-    cost, path_count, node = heappop(heap)
+    path_count, node = q.pop(0)
 
     if get_elevation(node) <= ord('a'):
         print("Part 2:", path_count)
@@ -81,5 +81,4 @@ while heap:
             continue
         visited.add(new_node)
 
-        cost += 1
-        heappush(heap, (cost, path_count + 1, new_node))
+        q.append((path_count + 1, new_node))
